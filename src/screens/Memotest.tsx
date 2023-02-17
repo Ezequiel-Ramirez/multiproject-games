@@ -29,6 +29,7 @@ const Memotest = () => {
     const [gessed, setGessed] = useState<string[]>([]);
     const [selected, setSelected] = useState<string[]>([]);
     const [confetti, setConfetti] = useState<boolean>(false);
+    const isDesktop = window.innerWidth > 768;
 
     useEffect(() => {
         if (selected.length === 2) {
@@ -70,9 +71,8 @@ const Memotest = () => {
             <ul
                 style={{
                     display: "grid",
-                    gridTemplateColumns:
-                        "repeat(auto-fill, minmax(128px, 1fr))",
-                    gap: "24px",
+                    gridTemplateColumns: isDesktop ? "repeat(auto-fill, minmax(128px, 1fr))" : "repeat(auto-fill, minmax(80px, 1fr))",
+                    gap: isDesktop ? "24px" : "3px",
                 }}
             >
                 {IMAGES.map((image) => {
