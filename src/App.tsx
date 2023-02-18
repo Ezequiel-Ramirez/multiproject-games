@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Memotest from "./screens/Memotest";
+import Memotest from "./screens/Memotest/Memotest";
 import Pokemon from "./screens/Pokemon/Pokemon";
 import WordsPerMinute from "./screens/WordsPerMinute";
 

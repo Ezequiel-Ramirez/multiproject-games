@@ -1,7 +1,25 @@
 import { useState, useEffect } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
+import './Memotest.css';
 
 const IMAGES = [
+    "https://icongr.am/devicon/angularjs-original.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/babel-original.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/bower-original.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/docker-original-wordmark.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/typescript-original.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/sass-original.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/react-original.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/python-original.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/nodejs-original.svg?size=128&color=currentColor",
+    "https://icongr.am/devicon/javascript-original.svg?size=128&color=currentColor",
+    'https://icongr.am/devicon/css3-original.svg?size=128&color=currentColor',
+    'https://icongr.am/devicon/html5-original.svg?size=128&color=currentColor',
+]
+    .flatMap((image) => [`a|${image}`, `b|${image}`]) // duplicate images
+    .sort(() => Math.random() - 0.5); // shuffle images
+
+const IMAGESMOBILE = [
     "https://icongr.am/devicon/angularjs-original.svg?size=128&color=currentColor",
     "https://icongr.am/devicon/babel-original.svg?size=128&color=currentColor",
     "https://icongr.am/devicon/bower-original.svg?size=128&color=currentColor",
@@ -30,6 +48,7 @@ const Memotest = () => {
     const [selected, setSelected] = useState<string[]>([]);
     const [confetti, setConfetti] = useState<boolean>(false);
     const isDesktop = window.innerWidth > 768;
+    const images = isDesktop ? IMAGES : IMAGESMOBILE;
 
     useEffect(() => {
         if (selected.length === 2) {
@@ -43,7 +62,7 @@ const Memotest = () => {
     }, [selected]);
 
     useEffect(() => {
-        if (gessed.length === IMAGES.length) {
+        if (gessed.length === images.length) {
             setConfetti(true);
             setTimeout(() => {
                 location.reload();
@@ -52,7 +71,7 @@ const Memotest = () => {
     }, [gessed]);
 
     return (
-        <>
+        <div className='containerMemotest'>
             {confetti && (
                 <ConfettiExplosion
                     particleCount={250}
@@ -68,14 +87,16 @@ const Memotest = () => {
                     }}
                 />
             )}
+            <h1>Memotest</h1>
             <ul
                 style={{
+                    padding: isDesktop ? '10px 40px' : '10px 10px',
                     display: "grid",
-                    gridTemplateColumns: isDesktop ? "repeat(auto-fill, minmax(128px, 1fr))" : "repeat(auto-fill, minmax(80px, 1fr))",
+                    gridTemplateColumns: isDesktop ? "repeat(auto-fill, minmax(128px, 1fr))" : "repeat(auto-fill, minmax(70px, 1fr))",
                     gap: isDesktop ? "24px" : "3px",
                 }}
             >
-                {IMAGES.map((image) => {
+                {images.map((image) => {
                     const [, url] = image.split("|");
 
                     return (
@@ -89,7 +110,7 @@ const Memotest = () => {
                             key={image}
                             style={{
                                 padding: 12,
-                                border: "1px solid #666",
+                                border: "1.5px solid #222121",
                                 borderRadius: 12,
                                 cursor: "pointer",
                             }}
@@ -107,7 +128,7 @@ const Memotest = () => {
                     );
                 })}
             </ul>
-        </>
+        </div>
     );
 };
 
