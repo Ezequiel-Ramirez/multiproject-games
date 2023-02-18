@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Memotest from "./screens/Memotest";
-import Pokemon from "./screens/Pokemon";
+import Pokemon from "./screens/Pokemon/Pokemon";
 import WordsPerMinute from "./screens/WordsPerMinute";
 
 function App() {
